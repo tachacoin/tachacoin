@@ -102,7 +102,7 @@ static const char* FEE_ESTIMATES_FILENAME="fee_estimates.dat";
 /**
  * The PID file facilities.
  */
-static const char* BITCOIN_PID_FILENAME = "qtumd.pid";
+static const char* BITCOIN_PID_FILENAME = "tachacoind.pid";
 
 static fs::path GetPidFile()
 {
@@ -207,7 +207,7 @@ void Shutdown(InitInterfaces& interfaces)
     /// for example if the data directory was found to be locked.
     /// Be sure that anything that writes files or flushes caches only does this if the respective
     /// module was initialized.
-    RenameThread("qtum-shutoff");
+    RenameThread("tachacoin-shutoff");
     mempool.AddTransactionsUpdated(1);
 
     StopHTTPRPC();
@@ -581,8 +581,8 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/qtumproject/qtum>";
-    const std::string URL_WEBSITE = "<https://qtum.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/tachacoin/tachacoin>";
+    const std::string URL_WEBSITE = "<https://tachacoin.tech>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i"), COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
@@ -690,7 +690,7 @@ void DeleteBlockChainData()
     // Delete block chain data paths
     fs::remove_all(GetDataDir() / "chainstate");
     fs::remove_all(GetBlocksDir());
-    fs::remove_all(GetDataDir() / "stateQtum");
+    fs::remove_all(GetDataDir() / "stateTachacoin");
     fs::remove(GetDataDir() / "banlist.dat");
     fs::remove(GetDataDir() / FEE_ESTIMATES_FILENAME);
     fs::remove(GetDataDir() / "mempool.dat");
@@ -1338,7 +1338,7 @@ bool AppInitMain(InitInterfaces& interfaces)
         }
     }
 
-////////////////////////////////////////////////////////////////////// // qtum
+////////////////////////////////////////////////////////////////////// // tachacoin
     dev::g_logPost = [&](std::string const& s, char const* c){ LogInstance().LogPrintStr(s + '\n', true); };
     dev::g_logPost(std::string("\n\n\n\n\n\n\n\n\n\n"), NULL);
 //////////////////////////////////////////////////////////////////////
@@ -1684,7 +1684,7 @@ bool AppInitMain(InitInterfaces& interfaces)
                 break;
             }
 
-                /////////////////////////////////////////////////////////// qtum
+                /////////////////////////////////////////////////////////// tachacoin
                 if((gArgs.IsArgSet("-dgpstorage") && gArgs.IsArgSet("-dgpevm")) || (!gArgs.IsArgSet("-dgpstorage") && gArgs.IsArgSet("-dgpevm")) ||
                   (!gArgs.IsArgSet("-dgpstorage") && !gArgs.IsArgSet("-dgpevm"))){
                     fGettingValuesDGP = true;
@@ -1693,16 +1693,16 @@ bool AppInitMain(InitInterfaces& interfaces)
                 }
 
                 dev::eth::Ethash::init();
-                fs::path qtumStateDir = GetDataDir() / "stateQtum";
-                bool fStatus = fs::exists(qtumStateDir);
-                const std::string dirQtum(qtumStateDir.string());
+                fs::path tachacoinStateDir = GetDataDir() / "stateTachacoin";
+                bool fStatus = fs::exists(tachacoinStateDir);
+                const std::string dirTachacoin(tachacoinStateDir.string());
                 const dev::h256 hashDB(dev::sha3(dev::rlp("")));
-                dev::eth::BaseState existsQtumstate = fStatus ? dev::eth::BaseState::PreExisting : dev::eth::BaseState::Empty;
-                globalState = std::unique_ptr<QtumState>(new QtumState(dev::u256(0), QtumState::openDB(dirQtum, hashDB, dev::WithExisting::Trust), dirQtum, existsQtumstate));
-                dev::eth::ChainParams cp((chainparams.EVMGenesisInfo(dev::eth::Network::qtumMainNetwork)));
+                dev::eth::BaseState existsTachacoinstate = fStatus ? dev::eth::BaseState::PreExisting : dev::eth::BaseState::Empty;
+                globalState = std::unique_ptr<TachacoinState>(new TachacoinState(dev::u256(0), TachacoinState::openDB(dirTachacoin, hashDB, dev::WithExisting::Trust), dirTachacoin, existsTachacoinstate));
+                dev::eth::ChainParams cp((chainparams.EVMGenesisInfo(dev::eth::Network::tachacoinMainNetwork)));
                 globalSealEngine = std::unique_ptr<dev::eth::SealEngineFace>(cp.createSealEngine());
 
-                pstorageresult.reset(new StorageResults(qtumStateDir.string()));
+                pstorageresult.reset(new StorageResults(tachacoinStateDir.string()));
                 if (fReset) {
                     pstorageresult->wipeResults();
                 }
@@ -1723,7 +1723,7 @@ bool AppInitMain(InitInterfaces& interfaces)
                 ///////////////////////////////////////////////////////////
 
 #ifdef ENABLE_BITCORE_RPC
-                /////////////////////////////////////////////////////////////// // qtum
+                /////////////////////////////////////////////////////////////// // tachacoin
                 if (fAddressIndex != gArgs.GetBoolArg("-addrindex", DEFAULT_ADDRINDEX)) {
                     strLoadError = _("You need to rebuild the database using -reindex-chainstate to change -addrindex");
                     break;

@@ -269,9 +269,9 @@ public:
     {
         LOCK(::cs_main);
 
-        QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-        blockGasLimit = qtumDGP.getBlockGasLimit(chainActive.Height());
-        minGasPrice = CAmount(qtumDGP.getMinGasPrice(chainActive.Height()));
+        TachacoinDGP tachacoinDGP(globalState.get(), fGettingValuesDGP);
+        blockGasLimit = tachacoinDGP.getBlockGasLimit(chainActive.Height());
+        minGasPrice = CAmount(tachacoinDGP.getMinGasPrice(chainActive.Height()));
         nGasPrice = (minGasPrice>DEFAULT_GAS_PRICE)?minGasPrice:DEFAULT_GAS_PRICE;
     }
     void getSyncInfo(int& numBlocks, bool& isSyncing)

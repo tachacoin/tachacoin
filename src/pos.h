@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2013 The PPCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef QUANTUM_POS_H
-#define QUANTUM_POS_H
+#ifndef TACHACOIN_POS_H
+#define TACHACOIN_POS_H
 
 #include <chain.h>
 #include <primitives/transaction.h>
@@ -68,4 +68,4 @@ bool GetMPoSOutputScripts(std::vector<CScript> &mposScroptList, int nHeight, con
 
 bool CreateMPoSOutputs(CMutableTransaction& txNew, int64_t nRewardPiece, int nHeight, const Consensus::Params& consensusParams);
 
-#endif // QUANTUM_POS_H
+#endif // TACHACOIN_POS_H

@@ -19,7 +19,7 @@
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 
-///////////////////////////////////////////// // qtum
+///////////////////////////////////////////// // tachacoin
 #include <libdevcore/SHA3.h>
 #include <libdevcore/RLP.h>
 #include "arith_uint256.h"
@@ -43,8 +43,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
     genesis.hashPrevBlock.SetNull();
     genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
-    genesis.hashStateRoot = uint256(h256Touint(dev::h256("e965ffd002cd6ad0e2dc402b8044de833e06b23127ea8c3d80aec91410771495"))); // qtum
-    genesis.hashUTXORoot = uint256(h256Touint(dev::sha3(dev::rlp("")))); // qtum
+    genesis.hashStateRoot = uint256(h256Touint(dev::h256("e965ffd002cd6ad0e2dc402b8044de833e06b23127ea8c3d80aec91410771495"))); // tachacoin
+    genesis.hashUTXORoot = uint256(h256Touint(dev::sha3(dev::rlp("")))); // tachacoin
     return genesis;
 }
 
@@ -73,7 +73,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 985500; // qtum halving every 4 years
+        consensus.nSubsidyHalvingInterval = 985500; // tachacoin halving every 4 years
         consensus.BIP16Exception = uint256S("0x000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c");
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S("0x000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c");
@@ -109,7 +109,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000012cae21c73d14f9b29e"); // qtum
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000012cae21c73d14f9b29e"); // tachacoin
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x814e7d91aac6c577e4589b76918f44cf80020212159d39709fbad3f219725c9f"); // 445709
@@ -201,7 +201,7 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 985500; // qtum halving every 4 years
+        consensus.nSubsidyHalvingInterval = 985500; // tachacoin halving every 4 years
         consensus.BIP16Exception = uint256S("0x0000e803ee215c0684ca0d2f9220594d3f828617972aad66feb2ba51f5e14222");
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S("0x0000e803ee215c0684ca0d2f9220594d3f828617972aad66feb2ba51f5e14222");
@@ -237,7 +237,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000047cc31541550003573"); // qtum
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000047cc31541550003573"); // tachacoin
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x4a5ab88811edba9f43fe6fe1ca9f529fb363ed2f0725ae9797bb5bdd9220cb7a"); // 421632
@@ -259,7 +259,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("qtum4.dynu.net"); // Qtum testnet
+        vSeeds.emplace_back("tachacoin4.dynu.net"); // Tachacoin testnet
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,120);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);
@@ -317,7 +317,7 @@ public:
         strNetworkID = "regtest";
         consensus.nSubsidyHalvingInterval = 150;
         consensus.BIP16Exception = uint256S("0x665ed5b402ac0b44efc37d8926332994363e8a7278b7ee9a58fb972efadae943");
-        consensus.BIP34Height = 0; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests) // activate for qtum
+        consensus.BIP34Height = 0; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests) // activate for tachacoin
         consensus.BIP34Hash = uint256S("0x665ed5b402ac0b44efc37d8926332994363e8a7278b7ee9a58fb972efadae943");
         consensus.BIP65Height = 0; // BIP65 activated on regtest (Used in rpc activation tests)
         consensus.BIP66Height = 0; // BIP66 activated on regtest (Used in rpc activation tests)
@@ -466,7 +466,7 @@ public:
         consensus.QIP6Height = 1000;
         consensus.QIP7Height = 0; // QIP7 activated on regtest
 
-        // QTUM have 500 blocks of maturity, increased values for regtest in unit tests in order to correspond with it
+        // TACHACOIN have 500 blocks of maturity, increased values for regtest in unit tests in order to correspond with it
         consensus.nSubsidyHalvingInterval = 750;
         consensus.nRuleChangeActivationThreshold = 558; // 75% for testchains
         consensus.nMinerConfirmationWindow = 744; // Faster than normal for regtest (744 instead of 2016)
@@ -547,7 +547,7 @@ void UpdateConstantinopleBlockHeight(int nHeight)
 
 void CChainParams::UpdateDifficultyChangeBlockHeight(int nHeight)
 {
-    consensus.nSubsidyHalvingInterval = 985500; // qtum halving every 4 years
+    consensus.nSubsidyHalvingInterval = 985500; // tachacoin halving every 4 years
     consensus.posLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
     consensus.QIP9Height = nHeight;
     consensus.fPowAllowMinDifficultyBlocks = false;

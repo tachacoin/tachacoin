@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=0.17.6
+Name=Tachacoin Core
+Comment=Connect to the Tachacoin P2P Network
+Exec=tachacoin-qt %u
+Terminal=false
+Type=Application
+Icon=tachacoin128
+MimeType=x-scheme-handler/tachacoin;
+Categories=Network;
+StartupWMClass=Tachacoin-qt
+Name[en_US]=tachacoin-qt

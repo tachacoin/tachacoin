@@ -84,16 +84,16 @@ static void AssembleBlock(benchmark::State& state)
         ::globalSealEngine.reset();
 
         ::fRequireStandard=false;
-        fs::path qtumStateDir = GetDataDir() / "stateQtum";
-        bool fStatus = fs::exists(qtumStateDir);
-        const std::string dirQtum(qtumStateDir.string());
+        fs::path tachacoinStateDir = GetDataDir() / "stateTachacoin";
+        bool fStatus = fs::exists(tachacoinStateDir);
+        const std::string dirTachacoin(tachacoinStateDir.string());
         const dev::h256 hashDB(dev::sha3(dev::rlp("")));
-        dev::eth::BaseState existsQtumstate = fStatus ? dev::eth::BaseState::PreExisting : dev::eth::BaseState::Empty;
-        ::globalState = std::unique_ptr<QtumState>(new QtumState(dev::u256(0), QtumState::openDB(dirQtum, hashDB, dev::WithExisting::Trust), dirQtum, existsQtumstate));
-        dev::eth::ChainParams cp((chainparams.EVMGenesisInfo(dev::eth::Network::qtumMainNetwork)));
+        dev::eth::BaseState existsTachacoinstate = fStatus ? dev::eth::BaseState::PreExisting : dev::eth::BaseState::Empty;
+        ::globalState = std::unique_ptr<TachacoinState>(new TachacoinState(dev::u256(0), TachacoinState::openDB(dirTachacoin, hashDB, dev::WithExisting::Trust), dirTachacoin, existsTachacoinstate));
+        dev::eth::ChainParams cp((chainparams.EVMGenesisInfo(dev::eth::Network::tachacoinMainNetwork)));
         ::globalSealEngine = std::unique_ptr<dev::eth::SealEngineFace>(cp.createSealEngine());
 
-        ::pstorageresult.reset(new StorageResults(qtumStateDir.string()));
+        ::pstorageresult.reset(new StorageResults(tachacoinStateDir.string()));
 
         if(chainActive.Tip() != nullptr){
             ::globalState->setRoot(uintToh256(chainActive.Tip()->hashStateRoot));

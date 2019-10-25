@@ -1,7 +1,7 @@
-#ifndef QTUM_CONVERT_H
-#define QTUM_CONVERT_H
+#ifndef TACHACOIN_CONVERT_H
+#define TACHACOIN_CONVERT_H
 
-////////////////////////////////////////////////////// qtum
+////////////////////////////////////////////////////// tachacoin
 #include <uint256.h>
 #include <libdevcore/Common.h>
 #include <libdevcore/CommonData.h>
@@ -35,4 +35,4 @@ inline uint256 u256Touint(const dev::u256& in)
 }
 //////////////////////////////////////////////////////
 
-#endif // QTUM_CONVERT_H
+#endif // TACHACOIN_CONVERT_H

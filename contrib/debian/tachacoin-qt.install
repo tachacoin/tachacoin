@@ -1,0 +1,6 @@
+usr/local/bin/tachacoin-qt usr/bin
+share/pixmaps/tachacoin32.xpm usr/share/pixmaps
+share/pixmaps/tachacoin16.xpm usr/share/pixmaps
+share/pixmaps/tachacoin128.png usr/share/pixmaps
+debian/tachacoin-qt.desktop usr/share/applications
+debian/tachacoin-qt.protocol usr/share/kde4/services/
