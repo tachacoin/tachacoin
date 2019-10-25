@@ -79,10 +79,10 @@ public:
         consensus.BIP34Hash = uint256S("0x000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c");
         consensus.BIP65Height = 0; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 0; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
-        consensus.QIP5Height = 466600;
-        consensus.QIP6Height = 466600;
-        consensus.QIP7Height = 466600;
-        consensus.QIP9Height = 466600;
+        consensus.QIP5Height = 5100;
+        consensus.QIP6Height = 5100;
+        consensus.QIP7Height = 5100;
+        consensus.QIP9Height = 5100;
         consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.QIP9PosLimit = uint256S("0000000000001fffffffffffffffffffffffffffffffffffffffffffffffffff"); // The new POS-limit activated after QIP9
@@ -119,11 +119,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xf1;
-        pchMessageStart[1] = 0xcf;
-        pchMessageStart[2] = 0xa6;
-        pchMessageStart[3] = 0xd3;
-        nDefaultPort = 3888;
+        pchMessageStart[0] = 0x64;
+        pchMessageStart[1] = 0x76;
+        pchMessageStart[2] = 0x88;
+        pchMessageStart[3] = 0x54;
+        nDefaultPort = 44450;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 6;
         m_assumed_chain_state_size = 2;
@@ -138,18 +138,20 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("qtum3.dynu.net"); // Qtum mainnet
-        vSeeds.emplace_back("qtum5.dynu.net"); // Qtum mainnet
-        vSeeds.emplace_back("qtum6.dynu.net"); // Qtum mainnet
-        vSeeds.emplace_back("qtum7.dynu.net"); // Qtum mainnet
+        vSeeds.emplace_back("seed.tachacoin.tech"); 
+        vSeeds.emplace_back("seed2.tachacoin.tech");
+        vSeeds.emplace_back("seed3.tachacoin.tech");
+        vSeeds.emplace_back("80.211.180.242");
+        vSeeds.emplace_back("80.211.167.81");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,58);
+
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,50);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        bech32_hrp = "qc";
+        bech32_hrp = "tc";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -159,23 +161,23 @@ public:
 
         checkpointData = {
             {
-                { 0, uint256S("000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c")},
-                { 5000, uint256S("00006a5338e5647872bd91de1d291365e941e14dff1939b5f16d1804d1ce61cd")}, //last PoW block
-                { 45000, uint256S("060c6af680f6975184c7a17059f2ff4970544fcfd4104e73744fe7ab7be14cfc")},
-                { 90000, uint256S("66fcf426b0aa6f2c9e3330cb2775e9e13c4a2b8ceedb50f8931ae0e12078ad50")},
-                { 245000, uint256S("ed79607feeadcedf5b94f1c43df684af5106e79b0989a008a88f9dc2221cc12a")},
-                { 353000, uint256S("d487896851fed42b07771f950fcc4469fbfa79211cfefed800f6d7806255e23f")},
-                { 367795, uint256S("1209326b73e38e44ec5dc210f51dc5d8c3494e9c698521032dd754747d4c1685")},
-                { 445709, uint256S("814e7d91aac6c577e4589b76918f44cf80020212159d39709fbad3f219725c9f")},
+                {   0, uint256S("000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c")},
+                { 100, uint256S("0000cfefded613f030f5c802266a337736645cc8e5072e8a99c9574524d614ac")},
+                { 500, uint256S("0000d48e2f563c3f7dd3a4b7dfef8eca152fa8ef851c8cccca9bfe0e53813fc6")},
+                { 1000, uint256S("0000ae91e92680ffd6c0ee849ff60d9fcaebfce15ef2a03b6fae9726baae1dd0")},
+                { 2000, uint256S("00000862f88c7624c4ff587cd82f0966918914efe0b3a210c733166f2fea6820")},
+                { 5000, uint256S("00002e5fcab69da8e9e3a5688cecd755de4e354af68a21269fb8c2282c7497e4")},
+                { 5001, uint256S("419144be954391e03aa2baf7aed8d49f839dcb8e2e8a72a24a5420b66b2bb87f")},
+                { 5003, uint256S("2e60684e37fa47617a169d5611b51e1549cacfec3db2f3dc9d59e51956278c52")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data as of block 3e76a9f460f5df039f828e3c259da03e1b4e1ec883cbf687a228e346cc457360 (height 253817)
-            1568403088, // * UNIX timestamp of last known number of transactions
-            3374744, // * total number of transactions between genesis and that timestamp
+            1571836560, // * UNIX timestamp of last known number of transactions
+            5007, // * total number of transactions between genesis and that timestamp
             //   (the tx=... number in the SetBestChain debug.log lines)
-            0.0349037843706379 // * estimated number of transactions per second after that timestamp
+            0.9991 // * estimated number of transactions per second after that timestamp
         };
 
         /* disable fallback fee on mainnet */
