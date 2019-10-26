@@ -109,10 +109,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000012cae21c73d14f9b29e"); // tachacoin
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000001b33d515d914"); // tachacoin
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x814e7d91aac6c577e4589b76918f44cf80020212159d39709fbad3f219725c9f"); // 445709
+        consensus.defaultAssumeValid = uint256S("0x7b202e4f3aa17febd382d0603b4131f0e61a28c0de3d866c16c7c018e3b85ead"); 
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -162,22 +162,23 @@ public:
         checkpointData = {
             {
                 {   0, uint256S("000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c")},
-                { 100, uint256S("0000cfefded613f030f5c802266a337736645cc8e5072e8a99c9574524d614ac")},
-                { 500, uint256S("0000d48e2f563c3f7dd3a4b7dfef8eca152fa8ef851c8cccca9bfe0e53813fc6")},
-                { 1000, uint256S("0000ae91e92680ffd6c0ee849ff60d9fcaebfce15ef2a03b6fae9726baae1dd0")},
-                { 2000, uint256S("00000862f88c7624c4ff587cd82f0966918914efe0b3a210c733166f2fea6820")},
-                { 5000, uint256S("00002e5fcab69da8e9e3a5688cecd755de4e354af68a21269fb8c2282c7497e4")},
-                { 5001, uint256S("419144be954391e03aa2baf7aed8d49f839dcb8e2e8a72a24a5420b66b2bb87f")},
-                { 5003, uint256S("2e60684e37fa47617a169d5611b51e1549cacfec3db2f3dc9d59e51956278c52")},
+                { 100, uint256S("0000e0fed5b42309e69610aae70c4eaf4887925c16d54a5cb38250c844173e76")},
+                { 500, uint256S("0000aab6c9fb86f122ca462668751f58e5e0fe1249659f46b49417a763923d1b")},
+                { 1000, uint256S("0000fd0014f60d63e8d7421ece568615709fb457ed0989f88af9fe1213db13fb")},
+                { 2000, uint256S("000009389905eba539223dd2e82caee62eccf031112b491bb2c1e8b31a33d459")},
+                { 5000, uint256S("000035b0397dac884080183a26f2d97e605ef591e999e0cabaf9f54c35c5c432")},
+                { 5001, uint256S("a0b020cc4ae99bdb2221594d5d67d83ff7a43933a44baacc9dd6136658b79388")},
+                { 5028, uint256S("7b202e4f3aa17febd382d0603b4131f0e61a28c0de3d866c16c7c018e3b85ead")},
+
             }
         };
 
         chainTxData = ChainTxData{
             // Data as of block 3e76a9f460f5df039f828e3c259da03e1b4e1ec883cbf687a228e346cc457360 (height 253817)
-            1571836560, // * UNIX timestamp of last known number of transactions
-            5007, // * total number of transactions between genesis and that timestamp
+            1572103664, // * UNIX timestamp of last known number of transactions
+            5061, // * total number of transactions between genesis and that timestamp
             //   (the tx=... number in the SetBestChain debug.log lines)
-            0.9991 // * estimated number of transactions per second after that timestamp
+            0.9934 // * estimated number of transactions per second after that timestamp
         };
 
         /* disable fallback fee on mainnet */
