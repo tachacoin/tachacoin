@@ -27,7 +27,7 @@ Common `host-platform-triplets` for cross compilation are:
 - `aarch64-linux-gnu` for Linux ARM 64 bit
 - `riscv32-linux-gnu` for Linux RISC-V 32 bit
 - `riscv64-linux-gnu` for Linux RISC-V 64 bit
-`aarch64-linux-android` for Android ARM 64 bit
+- `aarch64-linux-android` for Android ARM 64 bit
 
 The paths are automatically configured and no other options are needed unless targeting Android.
 Before proceeding with an Android build one needs to get the [Android SDK](https://developer.android.com/studio) and use the "SDK Manager" tool to download the NDK and one or more "Platform packages" (these are Android versions and have a corresponding API level).
